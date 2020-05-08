@@ -467,10 +467,6 @@ class IonicDeployImpl {
   async deleteVersionById(versionId: string): Promise<boolean> {
     const prefs = this._savedPreferences;
 
-    if (prefs.currentVersionId === versionId) {
-      throw Error(`Can't delete version with id: ${versionId} as it is the current version.`);
-    }
-
     delete prefs.updates[versionId];
     await this._savePrefs(prefs);
 
